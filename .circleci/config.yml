@@ -8,21 +8,9 @@ jobs:
     environment:
       STAGE: one
     executor: machine
-    parallelism: 2
+    parallelism: 1
     steps:
       - checkout
       - run:
           name: one
-          command: . .circleci/run.sh
-workflows:
-   version: 2
-   nightly:
-     triggers:
-       - schedule:
-           cron: "0 * * * *"
-           filters:
-             branches:
-               only:
-                 - master
-     jobs:
-       - build
+          command: bash < .circleci/run.sh
